@@ -1,18 +1,20 @@
 <template>
   <div>User componet
-
+{{age}}
     <div>
       {{userObj}}
     </div>
     <div v-for="(item, index) in list" v-bind:key="index">
-      {{ item.name }}
+      <input type="text" v-model="item.name">
+      <button @click="changeItem">post</button>
     </div>
+    <input type="text" v-model="age">
     <button @click="changeList">btn</button>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
-import { getUserList } from '../services/getUserList';
+import { getUserList, getUserListPost } from '../services/getUserList';
 
 // https://vuex.vuejs.org/zh/guide/state.html
 // vue-router
@@ -30,6 +32,7 @@ export default {
   data() {
     return {
       list: [],
+      age: 123,
     };
   },
   computed: {
@@ -46,6 +49,22 @@ export default {
       getUserList().then((res) => {
         this.list = res.data.results[0].list;
       });
+    },
+    changeList() {
+      this.age = 1;
+      // this.$nextTick(() => {
+      //   console.log('第二次');
+      //   console.log(this.age);
+      // });
+      // this.xx = xx是同步的，但页面更新是异步的
+      // 等待当前的同步任务完成之后再更新
+      this.list[0].name = 'hhhhh';
+      this.list.push({
+        name: `hh${Math.random()}`,
+      });
+    },
+    changeItem() {
+      getUserListPost();
     },
   },
 };
