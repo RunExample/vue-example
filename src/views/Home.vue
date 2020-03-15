@@ -1,18 +1,22 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <router-view />
+    home
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+// router-view 相当于一个占位符，从路由找到子组件，例如home下的user组件
 
+<script>
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
+  components: {},
+  data() {
+    return {};
   },
+  mounted() {},
+  methods: {},
 };
 </script>
+
+<style scoped lang="less">
+</style>
