@@ -22,3 +22,18 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## .browserslistc
+浏览器兼容性
+
+## main.js
+执行文件
+
+主要
+```js
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount('#app');
+```
