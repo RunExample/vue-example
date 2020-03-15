@@ -4,10 +4,15 @@
     <div>
       {{userObj}}
     </div>
+    <div v-for="(item, index) in list" v-bind:key="index">
+      {{ item.name }}
+    </div>
+    <button @click="changeList">btn</button>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
+import { getUserList } from '../services/getUserList';
 
 // https://vuex.vuejs.org/zh/guide/state.html
 // vue-router
@@ -23,7 +28,9 @@ import { mapState } from 'vuex';
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      list: [],
+    };
   },
   computed: {
 
@@ -32,9 +39,15 @@ export default {
     }),
   },
   mounted() {
-    console.log(this.$store);
+    this.getUser();
   },
-  methods: {},
+  methods: {
+    getUser() {
+      getUserList().then((res) => {
+        this.list = res.data.results[0].list;
+      });
+    },
+  },
 };
 </script>
 
