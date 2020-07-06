@@ -1,3 +1,5 @@
+just test
+
 # hello
 
 ## Project setup
